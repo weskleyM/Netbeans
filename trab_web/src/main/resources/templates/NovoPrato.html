@@ -9,7 +9,7 @@
           <div align="center">
                <h2>Adicionar Prato</h2><br/>
                <a href="listar">Lista de Pratos</a><br/>
-               <form action="#" th:action="@{/admin/salvar}" th:object="${prato}" method="post" enctype="">
+               <form action="/admin/salvar" th:object="${prato}" method="post" enctype="multipart/form-data">
                     <table class="table">
                          <tr>
                               <td>Nome</td>
