@@ -9,7 +9,7 @@
           <div align="center">
                <h2>Adicionar Prato</h2><br/>
                <a href="listar">Lista de Pratos</a><br/>
-               <form action="#" th:action="@{/admin/salvar}" th:object="${prato}" method="post">
+               <form action="#" th:action="@{/admin/salvar}" th:object="${prato}" method="post" enctype="">
                     <table class="table">
                          <tr>
                               <td>Nome</td>
@@ -22,6 +22,10 @@
                          <tr>
                               <td>Preço</td>
                               <td><input type="text" th:field="*{preco}" /></td>
+                         </tr>
+                         <tr>
+                              <td>Imagem</td>
+                              <td><input type="file" name="imagem" /></td>
                          </tr>
                          <tr>
                               <td colspan="2"><button type="submit">Salvar</button></td>

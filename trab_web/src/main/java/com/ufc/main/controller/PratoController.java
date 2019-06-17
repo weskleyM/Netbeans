@@ -5,9 +5,12 @@ import com.ufc.main.service.PratoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,9 +36,13 @@ public class PratoController {
      }
 
      @RequestMapping("/salvar")
-     public ModelAndView salvarPrato(@Validated Prato prato) {
-          pratoService.salvar(prato);
-          ModelAndView mv = new ModelAndView("redirect:/admin/listar");
+     public ModelAndView salvarPrato(@Validated Prato prato, BindingResult result, @RequestParam(value = "imagem") MultipartFile imagem) {
+          ModelAndView mv = new ModelAndView("NovoPrato");
+          if (result.hasErrors()) {
+               return mv;
+          }
+          mv.addObject("msg", "Prato salvo com sucesso");
+          pratoService.salvar(prato, imagem);
           return mv;
      }
 

@@ -22,7 +22,7 @@
                     <tbody>
                          <tr th:each="prato : ${listaPratos}">
                               <th scope="row" th:text="${prato.cod}">Cod</th>
-                              <td th:text="${prato.nome}">Name</td>
+                              <td th:text="${prato.nome}">Nome</td>
                               <td th:text="${prato.desc}">Descrição</td>
                               <td th:text="${prato.preco}">Preço</td>
                               <td>
@@ -30,6 +30,7 @@
                                    &nbsp;
                                    <a th:href="@{'/admin/deletar/' + ${prato.cod}}"><button type="button" class="btn btn-danger">Deletar</button></a>
                               </td>
+                              <td><img width="150" height="150" th:src="@{'/images/' + ${prato.nome} + .png}"></td>
                          </tr>
                     </tbody>
                </table>
