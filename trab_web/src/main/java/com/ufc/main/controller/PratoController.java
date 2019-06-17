@@ -5,6 +5,8 @@ import com.ufc.main.service.PratoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,4 +31,27 @@ public class PratoController {
           mv.addObject("prato", new Prato());
           return mv;
      }
+
+     @RequestMapping("/salvar")
+     public ModelAndView salvarPrato(@Validated Prato prato) {
+          pratoService.salvar(prato);
+          ModelAndView mv = new ModelAndView("redirect:/admin/listar");
+          return mv;
+     }
+
+     @RequestMapping("/editar/{cod}")
+     public ModelAndView editarPrato(@PathVariable Integer cod) {
+          Prato prato = pratoService.buscar(cod);
+          ModelAndView mv = new ModelAndView("EditarPrato");
+          mv.addObject("prato", prato);
+          return mv;
+     }
+
+     @RequestMapping("/deletar/{cod}")
+     public ModelAndView deletarPrato(@PathVariable Integer cod) {
+          pratoService.deletar(cod);
+          ModelAndView mv = new ModelAndView("redirect:/admin/listar");
+          return mv;
+     }
+
 }
