@@ -22,14 +22,14 @@ public class PratoController {
 
     @RequestMapping("/cadastrar")
     public ModelAndView cadastrarPrato() {
-        ModelAndView mv = new ModelAndView("cadastrar");
+        ModelAndView mv = new ModelAndView("prato/cadastrar");
         mv.addObject("prato", new Prato());
         return mv;
     }
 
     @RequestMapping("/salvar")
     public ModelAndView salvarPrato(@Validated Prato prato, BindingResult result, @RequestParam(value = "imagem") MultipartFile imagem) {
-        ModelAndView mv = new ModelAndView("cadastrar");
+        ModelAndView mv = new ModelAndView("prato/cadastrar");
         if (result.hasErrors()) {
             return mv;
         }
@@ -40,7 +40,7 @@ public class PratoController {
 
     @RequestMapping("/listar")
     public ModelAndView listarPrato() {
-        ModelAndView mv = new ModelAndView("listar");
+        ModelAndView mv = new ModelAndView("prato/listar");
         List<Prato> pratos = service.listar();
         mv.addObject("listaDePratos", pratos);
         return mv;
@@ -55,7 +55,7 @@ public class PratoController {
 
     @RequestMapping("/editar/{id}")
     public ModelAndView editarPrato(@PathVariable(name = "id") Long id) {
-        ModelAndView mv = new ModelAndView("editar");
+        ModelAndView mv = new ModelAndView("prato/editar");
         Prato prato = service.buscar(id);
         mv.addObject("prato", prato);
         return mv;
