@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Editar</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h3>Editar Prato</h3>
+        <hr/>
+        <form action="/admin/salvar" method="POST" th:object="${prato}" enctype="multipart/form-data">
+            <div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+                <span th:text="${mensagem}"></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                <div th:each="detailedError : ${#fields.detailedErrors()}">
+                    <span th:text="${detailedError.message}"></span>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td><input type="text" th:field="*{id}" readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <td>Nome</td>
+                    <td><input type="text" th:field="*{nome}"></td>
+                </tr>
+                <tr>
+                    <td>Descrição</td>
+                    <td><input type="text" th:field="*{desc}"></td>
+                </tr>
+                <tr>
+                    <td>Preço</td>
+                    <td><input type="text" th:field="*{preco}"></td>
+                </tr>
+                <tr>
+                    <td>Imagem</td>
+                    <td><input type="file" name="imagem"></td>
+                </tr>
+            </table>
+            <input type="submit" value="Salvar">
+        </form>
+        <a href="listar">Ver Pratos Cadastrados</a>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>

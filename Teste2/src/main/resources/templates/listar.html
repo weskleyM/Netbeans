@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Pratos</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="container" aling="center">
+            <a href="cadastrar">Adicionar Prato</a>
+            <table class="table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="prato : ${listaDePratos}">
+                        <td th:text="${prato.id}"></td>
+                        <td th:text="${prato.nome}"></td>
+                        <td th:text="${prato.desc}"></td>
+                        <td th:text="${prato.preco}"></td>
+                        <td><a th:href="@{/admin/deletar/{id}(id=${prato.id})}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
+                        <td><a th:href="@{/admin/editar/{id}(id=${prato.id})}"><button type="button" class="btn btn-primary">Editar</button></a></td>
+                        <td><img width="150" height="150" th:src="@{'/images'+${prato.nome}+'.png'}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
