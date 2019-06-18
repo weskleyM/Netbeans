@@ -17,47 +17,47 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin")
 public class PratoController {
 
-     @Autowired
-     private PratoService service;
+    @Autowired
+    private PratoService service;
 
-     @RequestMapping("/cadastrar")
-     public ModelAndView cadastrarPrato() {
-          ModelAndView mv = new ModelAndView("cadastrar");
-          mv.addObject("prato", new Prato());
-          return mv;
-     }
+    @RequestMapping("/cadastrar")
+    public ModelAndView cadastrarPrato() {
+        ModelAndView mv = new ModelAndView("cadastrar");
+        mv.addObject("prato", new Prato());
+        return mv;
+    }
 
-     @RequestMapping("/salvar")
-     public ModelAndView salvarPrato(@Validated Prato prato, BindingResult result, @RequestParam(value = "imagem") MultipartFile imagem) {
-          ModelAndView mv = new ModelAndView("cadastrar");
-          if (result.hasErrors()) {
-               return mv;
-          }
-          service.salvar(prato, imagem);
-          mv.addObject("mensagem", "Prato salvo com  sucesso!");
-          return mv;
-     }
+    @RequestMapping("/salvar")
+    public ModelAndView salvarPrato(@Validated Prato prato, BindingResult result, @RequestParam(value = "imagem") MultipartFile imagem) {
+        ModelAndView mv = new ModelAndView("cadastrar");
+        if (result.hasErrors()) {
+            return mv;
+        }
+        service.salvar(prato, imagem);
+        mv.addObject("mensagem", "Prato salvo com  sucesso!");
+        return mv;
+    }
 
-     @RequestMapping("/listar")
-     public ModelAndView listarPrato() {
-          ModelAndView mv = new ModelAndView("listar");
-          List<Prato> pratos = service.listar();
-          mv.addObject("listaDePratos", pratos);
-          return mv;
-     }
+    @RequestMapping("/listar")
+    public ModelAndView listarPrato() {
+        ModelAndView mv = new ModelAndView("listar");
+        List<Prato> pratos = service.listar();
+        mv.addObject("listaDePratos", pratos);
+        return mv;
+    }
 
-     @RequestMapping("/deletar/{id}")
-     public ModelAndView deletarPrato(@PathVariable(name = "id") Long id) {
-          ModelAndView mv = new ModelAndView("redirect:/admin/listar");
-          service.deletar(id);
-          return mv;
-     }
+    @RequestMapping("/deletar/{id}")
+    public ModelAndView deletarPrato(@PathVariable(name = "id") Long id) {
+        ModelAndView mv = new ModelAndView("redirect:/admin/listar");
+        service.deletar(id);
+        return mv;
+    }
 
-     @RequestMapping("/editar/{id}")
-     public ModelAndView editarPrato(@PathVariable(name = "id") Long id) {
-          ModelAndView mv = new ModelAndView("editar");
-          Prato prato = service.buscar(id);
-          mv.addObject("prato", prato);
-          return mv;
-     }
+    @RequestMapping("/editar/{id}")
+    public ModelAndView editarPrato(@PathVariable(name = "id") Long id) {
+        ModelAndView mv = new ModelAndView("editar");
+        Prato prato = service.buscar(id);
+        mv.addObject("prato", prato);
+        return mv;
+    }
 }

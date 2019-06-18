@@ -24,8 +24,8 @@
                         <td th:text="${prato.nome}"></td>
                         <td th:text="${prato.desc}"></td>
                         <td th:text="${prato.preco}"></td>
-                        <td><a th:href="@{/admin/deletar/{id}(id=${prato.id})}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
-                        <td><a th:href="@{/admin/editar/{id}(id=${prato.id})}"><button type="button" class="btn btn-primary">Editar</button></a></td>
+                        <td><a th:href="@{'/admin/deletar/'+${prato.id}}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
+                        <td><a th:href="@{'/admin/editar/'+${prato.id}}"><button type="button" class="btn btn-primary">Editar</button></a></td>
                         <td><img width="150" height="150" th:src="@{'/images'+${prato.nome}+'.png'}"></td>
                     </tr>
                 </tbody>
