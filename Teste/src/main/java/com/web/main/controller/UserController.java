@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AuthenticationController {
+public class UserController {
 
     @Autowired
     UserService userService;
@@ -52,14 +52,14 @@ public class AuthenticationController {
         ModelAndView modelAndView = new ModelAndView();
         // Check for the validations
         if (bindingResult.hasErrors()) {
-            modelAndView.addObject("successMessage", "Please correct the errors in form!");
+            modelAndView.addObject("msg", "Há erros no fomulário!");
             modelMap.addAttribute("bindingResult", bindingResult);
         } else if (userService.isUserAlreadyPresent(user)) {
-            modelAndView.addObject("successMessage", "user already exists!");
+            modelAndView.addObject("msg", "Usuário já existe!");
         } // we will save the user if, no binding errors
         else {
             userService.saveUser(user);
-            modelAndView.addObject("successMessage", "User is registered successfully!");
+            modelAndView.addObject("successMessage", "Usuário cadastrado com sucesso!");
         }
         modelAndView.addObject("user", new User());
         modelAndView.setViewName("registro");
