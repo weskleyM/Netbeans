@@ -42,7 +42,7 @@ public class PratoController {
     public ModelAndView deletarPrato(@PathVariable(name = "id") Integer id) {
         ModelAndView mav = new ModelAndView();
         pratoService.deletarPrato(id);
-        mav.setViewName("redirect:/admin/listar");
+        mav.setViewName("redirect:/admin/lista");
         return mav;
     }
 
@@ -66,7 +66,7 @@ public class PratoController {
             pratoService.salvarPrato(prato, imagem);
             //mav.addObject("mensagem", "Prato cadastrado com sucesso!");
             mav.addObject("prato", new Prato());
-            mav.setViewName("redirect:/admin/listar");
+            mav.setViewName("redirect:/admin/lista");
             return mav;
         }
     }
