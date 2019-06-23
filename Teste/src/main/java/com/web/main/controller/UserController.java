@@ -54,12 +54,12 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("msg", "Há erros no fomulário!");
             modelMap.addAttribute("bindingResult", bindingResult);
-        } else if (userService.isUserAlreadyPresent(user)) {
+        } else if (userService.userJaExiste(user)) {
             modelAndView.addObject("msg", "Usuário já existe!");
         } // we will save the user if, no binding errors
         else {
             userService.saveUser(user);
-            modelAndView.addObject("successMessage", "Usuário cadastrado com sucesso!");
+            modelAndView.addObject("msg", "Usuário cadastrado com sucesso!");
         }
         modelAndView.addObject("user", new User());
         modelAndView.setViewName("registro");

@@ -30,7 +30,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean isUserAlreadyPresent(User user) {
+    public boolean userJaExiste(User user) {
         boolean isUserAlreadyExists = false;
         User existingUser = userRepository.findByEmail(user.getEmail());
         // If user is found in database, then then user already exists.
