@@ -14,8 +14,8 @@
             <div align="center" th:if="${param.error}">
                 <p class="alert alert-danger">Email ou Senha Inválido.</p>
             </div>
-            <button class="btn btn-lg btn-primary" name="Submit" value="Logar" type="Submit"></button>
-            <a href="/registrar">Cadastre-se</a>
+            <button class="btn btn-lg btn-primary" name="Submit" value="Logar" type="Submit" th:text="Logar"></button>
+            <a th:href="@{registrar}">Cadastre-se</a>
         </form>
         <script src="/js/bootstrap.min.js"></script>
     </body>
