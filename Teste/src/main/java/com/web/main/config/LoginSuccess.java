@@ -32,14 +32,14 @@ public class LoginSuccess extends SimpleUrlAuthenticationSuccessHandler {
     protected String determineTargetUrl(Authentication authentication) {
         String url = "/login?error=true";
 
-        // Fetch the roles from Authentication object
+        // Busca a Role do objeto Authentication
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         List<String> roles = new ArrayList<String>();
         for (GrantedAuthority a : authorities) {
             roles.add(a.getAuthority());
         }
 
-        // check user role and decide the redirect URL
+        // Checa a Role e direciona para URL correspondente
         if (roles.contains("ADMIN_USER")) {
             url = "/admin";
         } else if (roles.contains("SITE_USER")) {

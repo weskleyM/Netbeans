@@ -3,25 +3,20 @@
     <head>
         <title>Login</title>
         <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     </head>
-    <body style="background-color:#ededed;">
-        <div style="background-color:#337ab7;height:50px;"></div>
-        <div class="container-fluid">
-            <div class="row col-lg-4 col-lg-offset-4"
-                 style="margin-top: 80px;background-color:#fff;padding:20px;border:solid 1px #ddd;">
-                <form th:action="@{/login}" method="post" class="form-signin">
-                    <h3 class="form-signin-heading" th:text="Login"></h3> <br/>
-                    <input type="text" id="email" name="email" th:placeholder="Email" class="form-control"/> <br/>
-                    <input type="password" id="senha" name="senha"  th:placeholder="Password" class="form-control"/> <br/>
-                    <div align="center" th:if="${param.error}" class="alert alert-danger">
-                        <p style="font-size: 20; color: #FF1C19;">Email ou Senha Inválido.</p>
-                    </div>
-                    <button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit" th:text="Login" style="margin-right:10px;"></button>
-                    <a href="/register">Cadastre-se</a>
-                </form>
+    <body>
+        <form th:action="@{/login}" method="post" class="form-signin">
+            <h3 class="form-signin-heading" th:text="Login"></h3> <br/>
+            <input type="text" id="email" name="email" th:placeholder="Email" class="form-control"/> <br/>
+            <input type="password" id="senha" name="senha"  th:placeholder="Senha" class="form-control"/> <br/>
+            <div align="center" th:if="${param.error}">
+                <p class="alert alert-danger">Email ou Senha Inválido.</p>
             </div>
-        </div>
+            <button class="btn btn-lg btn-primary" name="Submit" value="Logar" type="Submit"></button>
+            <a href="/registrar">Cadastre-se</a>
+        </form>
         <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>

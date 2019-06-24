@@ -20,49 +20,49 @@ public class UserController {
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login"); // resources/template/login.html
+        modelAndView.setViewName("login"); // resources/templates/login.html
         return modelAndView;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/registrar", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("registro"); // resources/template/register.html
+        modelAndView.setViewName("registro"); // resources/templates/registro.html
         return modelAndView;
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home"); // resources/template/home.html
+        modelAndView.setViewName("home"); // resources/templates/home.html
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView adminHome() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin"); // resources/template/admin.html
+        modelAndView.setViewName("admin"); // resources/templates/admin.html
         return modelAndView;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrar", method = RequestMethod.POST)
     public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
         ModelAndView modelAndView = new ModelAndView();
-        // Check for the validations
+        // Checa a validação dos campos
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("msg", "Há erros no fomulário!");
             modelMap.addAttribute("bindingResult", bindingResult);
         } else if (userService.userJaExiste(user)) {
             modelAndView.addObject("msg", "Usuário já existe!");
-        } // we will save the user if, no binding errors
+        } // Salva se nçao houver erros
         else {
             userService.saveUser(user);
             modelAndView.addObject("msg", "Usuário cadastrado com sucesso!");
         }
         modelAndView.addObject("user", new User());
-        modelAndView.setViewName("registro");
+        modelAndView.setViewName("registro"); // resources/templates/registro.html
         return modelAndView;
     }
 }

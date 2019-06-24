@@ -32,16 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                // URLs matching for access rights
+                // URLs para cada acesso
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
@@ -63,6 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login").and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
+                .dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
