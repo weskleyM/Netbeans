@@ -7,10 +7,19 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     </head>
     <body>
-        <div class="alert alert-primary">
-            <a th:href="@{logout}">Logout</a>
-            &nbsp;
-            <a th:href="@{admin/lista}">Pratos</a>
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" th:href="@{logout}">Logout</a>
+                    &nbsp;
+                    <a class="nav-item nav-link" th:href="@{admin/lista}">Pratos</a>
+                </div>
+            </div>
+        </nav>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/jquery.mask.min.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
+        <script src="/js/script.js"></script>
     </body>
 </html>
