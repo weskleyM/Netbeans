@@ -1,7 +1,10 @@
 package com.web.main.controller;
 
+import com.web.main.model.Prato;
 import com.web.main.model.User;
+import com.web.main.service.PratoService;
 import com.web.main.service.UserService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private PratoService pratoService;
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public ModelAndView login() {
@@ -34,6 +40,8 @@ public class UserController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView("home");
+        List<Prato> pratos = pratoService.listarPratos();
+        mv.addObject("pratos", pratos);
         return mv;
     }
 
