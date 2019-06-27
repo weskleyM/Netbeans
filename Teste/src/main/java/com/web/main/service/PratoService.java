@@ -13,4 +13,6 @@ public interface PratoService {
     public Prato buscarPrato(Integer id);
 
     public void deletarPrato(Integer id);
+
+    public List<Prato> buscaStatus();
 }

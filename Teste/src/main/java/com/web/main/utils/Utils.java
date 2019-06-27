@@ -15,4 +15,9 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
+    public static void deletarImagem(String local) {
+        File file = new File(local);
+        file.delete();
+    }
 }

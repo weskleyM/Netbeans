@@ -1,10 +1,14 @@
 package com.web.main.model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,11 @@ public class Prato {
 
     @Column(name = "prato_preco")
     private String preco;
+
+    private int status;
+
+    @OneToMany(mappedBy = "prato", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Item> itens;
 
     public Integer getId() {
         return id;
@@ -44,6 +53,22 @@ public class Prato {
 
     public void setPreco(String preco) {
         this.preco = preco;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 
 }
